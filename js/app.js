@@ -50,8 +50,8 @@ var Player = function() {
 	};
 
 Player.prototype.update = function() {
-	if (this.y < 60) {
-		this.reset;
+	if (this.y < 80) {
+		this.reset();
 	}
 	if (this.y > 420 ) {
 		this.y = 420;
