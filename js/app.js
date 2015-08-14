@@ -8,8 +8,8 @@ var Enemy = function(bugInitialX, bugInitialY, speed) {
 	};
 
 Enemy.prototype.update = function(dt) {
-	// Update x, multiplied by speed and dt to regularize speed.
-	// when bug reaches the edge of the canvase restart on the left with a random Speed
+// Update x, multiplied by speed and dt to regularize speed.
+// when bug reaches the edge of the canvas restart on the left with a random Speed
 	this.x += this.speed * dt;
 	
 	if (this.x >= 505) {
@@ -17,19 +17,18 @@ Enemy.prototype.update = function(dt) {
 		this.randomSpeed();
 		}
 	
-	//collisions with player defined by pixel zone around bug
+//collisions with player defined by pixel zone around bug
 	var bugLeft = this.x - 60;
 	var bugRight = this.x + 60;
 	var bugTop = this.y - 60;
 	var bugBottom = this.y +60;
 	
 	if (player.x >= bugLeft && player.x <= bugRight && player.y >= bugTop && player.y <= bugBottom)
-//TO DO: Make sure I know where the bug is and check the margin of collision
 		{
 		player.reset();
 		}
 };
-// Draw the enemy on the screen, required method for game
+
 Enemy.prototype.render = function() {
 	ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
@@ -47,13 +46,12 @@ var Player = function() {
 	// Player initial coordinates
 	this.x = PLAYER_X;
 	this.y = PLAYER_Y;
-	// TODO: add this.lives-- and this.score++
 	this.sprite = 'images/char-princess-girl.png';
 	};
 
 Player.prototype.update = function() {
 	if (this.y < 60) {
-		this.reset();
+		this.reset;
 	}
 	if (this.y > 420 ) {
 		this.y = 420;
