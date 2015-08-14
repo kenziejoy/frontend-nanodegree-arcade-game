@@ -18,12 +18,13 @@ Enemy.prototype.update = function(dt) {
 		}
 	
 	//collisions with player defined by pixel zone around bug
-	var bugLeft = this.x - 50;
-	var bugRight = this.x + 50;
-	var bugTop = this.y - 50;
-	var bugBottom = this.y +50;
+	var bugLeft = this.x - 60;
+	var bugRight = this.x + 60;
+	var bugTop = this.y - 60;
+	var bugBottom = this.y +60;
 	
-	if (player.x > bugLeft && player.x < bugRight && player.y > bugTop && player.y < bugBottom)
+	if (player.x >= bugLeft && player.x <= bugRight && player.y >= bugTop && player.y <= bugBottom)
+//TO DO: Make sure I know where the bug is and check the margin of collision
 		{
 		player.reset();
 		}
@@ -39,34 +40,35 @@ Enemy.prototype.randomSpeed = function() {
 
 //Player
 
-var playerInitialX = 200;
-var playerInitialY = 400;
+var PLAYER_X = 200;
+var PLAYER_Y = 400;
 
 var Player = function() {
 	// Player initial coordinates
-	this.x = playerInitialX;
-	this.y = playerInitialY;
+	this.x = PLAYER_X;
+	this.y = PLAYER_Y;
+	// TODO: add this.lives-- and this.score++
 	this.sprite = 'images/char-princess-girl.png';
 	};
 
 Player.prototype.update = function() {
-	if (player.y < 0) {
-		player.reset();
+	if (this.y < 60) {
+		this.reset();
 	}
-	if (player.y > 420 ) {
-		player.y = 420;
+	if (this.y > 420 ) {
+		this.y = 420;
 	}
-	if (player.x > 420) {
-		player.x = 420;
+	if (this.x > 420) {
+		this.x = 420;
 	}
-	if (player.x < 0) {
-		player.x = 0;
+	if (this.x < 0) {
+		this.x = 0;
 	}
 };
 
 Player.prototype.reset = function() {
-	this.x = playerInitialX;
-	this.y = playerInitialY;
+	this.x = PLAYER_X;
+	this.y = PLAYER_Y;
 };
 
 Player.prototype.render = function() {
@@ -74,17 +76,17 @@ Player.prototype.render = function() {
 };
 
 Player.prototype.handleInput = function(keyPressed) {
-	var stepHorizontal = 40;
-	var stepVertical = 40;
+	var STEP_X = 40;
+	var STEP_Y = 40;
 	
 	if (keyPressed === 'left') {
-		player.x -= stepHorizontal;
+		this.x -= STEP_X;
 	} else if (keyPressed === 'right') {
-		player.x += stepHorizontal;
+		this.x += STEP_X;
 	} else if (keyPressed === 'up' ) {
-		player.y -= stepVertical;
+		this.y -= STEP_Y;
 	} else if (keyPressed === 'down') {
-		player.y += stepVertical;
+		this.y += STEP_Y;
 	} else {
 		console.log ('Invalid Key');
 		return null;
@@ -94,7 +96,7 @@ Player.prototype.handleInput = function(keyPressed) {
 allEnemies = [
 	new Enemy (-50, 200, 80),
 	new Enemy (-50, 300, 50),
-	new Enemy (-50, 100, 30)]
+	new Enemy (-50, 100, 30)];
 			   
 // Place the player object in a variable called player
 var player = new Player();

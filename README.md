@@ -1,6 +1,8 @@
 The Princess and the Bug
 ===============================
 
+Click on index.html or visit my gh-page - http://kenziejoy.github.io/
+
 Get the Frong Princess back to the River without stepping on any Bugs (she's Buddhist).
 
 Use the arrow keys on your key board to move her around.
